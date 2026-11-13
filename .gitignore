@@ -218,3 +218,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# uv-kokoro generated outputs & sample input
+*.wav
+hello.txt
+.venv/

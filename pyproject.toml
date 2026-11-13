@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "uv-kokoro"
+version = "0.1.0"
+description = "A uv-installable CLI for text-to-speech using the Kokoro model."
+readme = "README.md"
+authors = [{ name = "stav" }]
+license = { file = "LICENSE" }
+requires-python = ">=3.10, <3.13"
+keywords = ["tts", "kokoro", "text-to-speech"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+]
+dependencies = [
+    "kokoro>=0.9.4",
+]
+
+[project.urls]
+Repository = "https://github.com/hexgrad/kokoro"
+
+[project.scripts]
+uv-kokoro = "uv_kokoro.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/uv_kokoro"]
