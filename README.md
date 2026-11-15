@@ -23,6 +23,12 @@ uv tool install .
 > Note: Kokoro requires Python `>=3.10, <3.13`. Make sure `uv` uses a
 > compatible interpreter (it will pick one automatically if available).
 
+Install at host:
+
+```bash
+uv tool install git+https://github.com/stavsap/uv-Kokoro.git
+```
+
 Run it as:
 
 ```bash
