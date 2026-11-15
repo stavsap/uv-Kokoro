@@ -2,8 +2,20 @@
 
 from __future__ import annotations
 
+import os
 import wave
 from pathlib import Path
+
+# Bootstrap espeak-ng data path *before* importing KPipeline.
+# When installed via ``uv tool install`` the VIRTUAL_ENV env-var is not
+# exported, so misaki / espeakng-loader cannot locate the bundled
+# espeak-ng-data directory.  Setting ESPEAK_DATA_PATH explicitly fixes this.
+try:
+    import espeakng_loader
+
+    os.environ.setdefault("ESPEAK_DATA_PATH", espeakng_loader.get_data_path())
+except ImportError:
+    pass  # system espeak-ng will be used as fallback
 
 import numpy as np
 import torch

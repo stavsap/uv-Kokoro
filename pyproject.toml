@@ -18,6 +18,7 @@ classifiers = [
 ]
 dependencies = [
     "kokoro>=0.9.4",
+    "misaki[en]>=0.9.3",
 ]
 
 [project.urls]
