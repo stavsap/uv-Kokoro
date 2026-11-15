@@ -3,8 +3,15 @@
 from __future__ import annotations
 
 import os
+import warnings
 import wave
 from pathlib import Path
+
+# Silence noisy torch warnings about deprecated weight_norm, LSTM dropout,
+# and torch.jit.script — these come from the Kokoro model, not our code.
+warnings.filterwarnings("ignore", message=".*weight_norm.*", category=FutureWarning)
+warnings.filterwarnings("ignore", message=".*dropout option.*", category=UserWarning)
+warnings.filterwarnings("ignore", message=".*torch.jit.script.*", category=FutureWarning)
 
 # Bootstrap espeak-ng data path *before* importing KPipeline.
 # When installed via ``uv tool install`` the VIRTUAL_ENV env-var is not
@@ -17,9 +24,11 @@ try:
 except ImportError:
     pass  # system espeak-ng will be used as fallback
 
+print("Loading TTS engine…", end=" ", flush=True)
 import numpy as np
 import torch
 from kokoro import KPipeline
+print("ready.")
 
 REPO_ID = "hexgrad/Kokoro-82M"
 SAMPLE_RATE = 24000
