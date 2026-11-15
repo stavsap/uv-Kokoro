@@ -9,7 +9,6 @@ from pathlib import Path
 
 from . import config, voices
 from .config import app_dir, get_mix, load as load_config, save as save_config
-from .tts import Synthesizer, write_wav
 from .voices import LANG_LABELS, SEX_LABELS, VoiceSpecError, groups, parse_voice_spec
 
 SAMPLE_RATE = 24000
@@ -82,6 +81,8 @@ def _fmt_duration(samples: int) -> str:
 # ---------------------------------------------------------------- commands
 
 def cmd_speak(args):
+    from .tts import Synthesizer, write_wav
+
     text, input_path = _read_text(args.input)
     if not text.strip():
         raise SystemExit("error: no text to synthesize.")
