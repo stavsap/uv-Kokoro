@@ -28,5 +28,8 @@ Repository = "https://github.com/hexgrad/kokoro"
 [project.scripts]
 uv-kokoro = "uv_kokoro.cli:main"
 
+[tool.hatch.metadata]
+allow-direct-references = true
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/uv_kokoro"]
